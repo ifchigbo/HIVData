@@ -25,7 +25,7 @@ def convertColumnstoNumeric():
         numeric_columns = ['TOTAL NUMBER OF HIV DIAGNOSES', 'HIV DIAGNOSES PER 100,000 POPULATION',
                            'TOTAL NUMBER OF CONCURRENT HIV/AIDS DIAGNOSES',
                            'PROPORTION OF CONCURRENT HIV/AIDS DIAGNOSES AMONG ALL HIV DIAGNOSES',
-                           'TOTAL NUMBER OF AIDS DIAGNOSES']
+                           'TOTAL NUMBER OF AIDS DIAGNOSES',"AIDS DIAGNOSES PER 100,000 POPULATION"]
         for items in numeric_columns:
             df[items] = pd.to_numeric(df[items], errors = 'coerce')
         #DataCleaning Processing
@@ -71,7 +71,6 @@ def comparisonBoroughNeigh():
 def cleanedDataSet():
     try:
         # For any niegborhood with an unknown value find its corresponding borough with an unkonwn value
-        #df['Borough'] = df.apply(lambda row: np.where(row['Neighborhood (U.H.F)'] == 'unknown', 'unknown', row['Borough']), axis=1) - review this code
         df.loc[df['Neighborhood (U.H.F)'] == 'unknown', 'Borough'] = df['Borough'].fillna('unknown')
         my_neighborhood = []
         my_borough = []
